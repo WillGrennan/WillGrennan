@@ -1,29 +1,507 @@
-Will Grennan
-Business/Management Student — University of Utah
-Salt Lake City, UT
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will Grennan — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B1F2B;
+    --paper:#F7F5F0;
+    --amber:#D98E2B;
+    --slate:#5B6472;
+    --line:#DCD7CB;
+    --white:#FFFFFF;
+  }
 
-About
-I'm a Business/Management major at the University of Utah. I haven't officially picked out a major yet, but I am leaning towards administration,
-finance, or marketing. I am hoping to break into the marine construction industry (Dad's side of the family all does this), or I would like to 
-do marketing for an outdoor recreational company, something like REI, Patagonia, or The North Face. I am hoping to learn AI better so that I can 
-use it better to complete tasks that would normally take a long time. A technical skill that I am interested in is web development.
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
 
-Skills
-AI Prompt Engineering
-Problem Solving
-Research Skills
-Microsoft Excel
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
 
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    margin:0;
+    color:var(--ink);
+  }
 
-Projects
-A running record of coursework and self-directed projects. Updated throughout the semester.
+  a{ color:inherit; text-decoration:none; }
 
+  img, svg{ max-width:100%; display:block; }
 
-Resume
-Coming soon
+  section{
+    padding:72px 6vw;
+    max-width:1040px;
+    margin:0 auto;
+  }
 
+  /* ---------- NAV ---------- */
+  .nav{
+    position:sticky;
+    top:0;
+    z-index:20;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20px 6vw;
+    background:rgba(247,245,240,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-mark{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.1rem;
+  }
+  .nav-links{
+    display:flex;
+    gap:28px;
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  .nav-links a{
+    font-size:0.95rem;
+    color:var(--slate);
+    padding-bottom:2px;
+    border-bottom:1px solid transparent;
+    transition:border-color .2s ease, color .2s ease;
+  }
+  .nav-links a:hover{
+    color:var(--ink);
+    border-color:var(--amber);
+  }
+  .nav-toggle{
+    display:none;
+    background:none;
+    border:1px solid var(--line);
+    border-radius:6px;
+    width:40px;
+    height:36px;
+    cursor:pointer;
+    font-size:1.2rem;
+    color:var(--ink);
+  }
 
-Contact
-willgrennan@utah.edu
-www.linkedin.com/in/will-grennan
-github.com/willgrennan
+  /* ---------- HERO ---------- */
+  .hero{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:40px;
+    align-items:end;
+    padding-top:96px;
+    padding-bottom:64px;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 6vw, 4.4rem);
+    line-height:1.05;
+    letter-spacing:-0.01em;
+  }
+  .hero .role{
+    margin-top:16px;
+    font-size:1.25rem;
+    color:var(--slate);
+  }
+  .hero .school{
+    color:var(--ink);
+    font-weight:500;
+  }
+  .hero-side{
+    border-left:1px solid var(--line);
+    padding-left:24px;
+    font-size:0.95rem;
+    color:var(--slate);
+  }
+  .hero-side p{ margin:0 0 10px; }
+
+  /* ---------- ABOUT ---------- */
+  #about{
+    border-top:1px solid var(--line);
+  }
+  .about-grid{
+    display:grid;
+    grid-template-columns:160px 1fr;
+    gap:32px;
+  }
+  .section-label{
+    font-size:0.85rem;
+    color:var(--amber);
+    font-weight:600;
+    letter-spacing:0.02em;
+  }
+  .about-grid p{
+    font-size:1.08rem;
+    max-width:62ch;
+  }
+
+  /* ---------- SKILLS ---------- */
+  #skills{
+    border-top:1px solid var(--line);
+  }
+  .skills-grid{
+    display:grid;
+    grid-template-columns:160px 1fr;
+    gap:32px;
+  }
+  .skill-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0,1fr));
+    gap:12px 32px;
+  }
+  .skill-list li{
+    padding:12px 0;
+    border-bottom:1px solid var(--line);
+    font-size:1rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+  }
+  .skill-list li::after{
+    content:attr(data-tag);
+    font-size:0.75rem;
+    color:var(--slate);
+  }
+
+  /* ---------- PROJECTS ---------- */
+  #projects{
+    border-top:1px solid var(--line);
+  }
+  .projects-head{
+    display:grid;
+    grid-template-columns:160px 1fr;
+    gap:32px;
+    margin-bottom:32px;
+  }
+  .project-list{
+    display:flex;
+    flex-direction:column;
+  }
+  .project-row{
+    display:grid;
+    grid-template-columns:160px 1fr auto;
+    gap:24px;
+    align-items:baseline;
+    padding:24px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .project-row:first-child{
+    border-top:1px solid var(--line);
+  }
+  .project-num{
+    font-family:'Fraunces', serif;
+    font-size:1rem;
+    color:var(--amber);
+  }
+  .project-title{
+    font-size:1.15rem;
+    font-weight:600;
+  }
+  .project-desc{
+    color:var(--slate);
+    font-size:0.98rem;
+    margin-top:4px;
+  }
+  .project-status{
+    font-size:0.85rem;
+    color:var(--slate);
+    white-space:nowrap;
+  }
+
+  /* ---------- RESUME ---------- */
+  #resume{
+    border-top:1px solid var(--line);
+  }
+  .resume-grid{
+    display:grid;
+    grid-template-columns:160px 1fr;
+    gap:32px;
+    align-items:center;
+  }
+  .resume-box{
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-block;
+    background:var(--ink);
+    color:var(--paper);
+    padding:12px 22px;
+    border-radius:6px;
+    font-size:0.95rem;
+    font-weight:500;
+    transition:background .2s ease;
+  }
+  .btn:hover{ background:var(--amber); color:var(--ink); }
+  .btn.disabled{
+    background:transparent;
+    color:var(--slate);
+    border:1px solid var(--line);
+    cursor:default;
+  }
+
+  /* ---------- CONTACT ---------- */
+  #contact{
+    border-top:1px solid var(--line);
+    padding-bottom:96px;
+  }
+  .contact-grid{
+    display:grid;
+    grid-template-columns:160px 1fr;
+    gap:32px;
+  }
+  .contact-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .contact-list a{
+    font-size:1.1rem;
+    border-bottom:1px solid var(--line);
+    padding-bottom:2px;
+  }
+  .contact-list a:hover{ border-color:var(--amber); }
+  .contact-list span{
+    display:block;
+    font-size:0.8rem;
+    color:var(--slate);
+    margin-bottom:2px;
+  }
+
+  footer{
+    text-align:center;
+    font-size:0.85rem;
+    color:var(--slate);
+    padding:28px 6vw 40px;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:760px){
+    .nav-links{
+      position:fixed;
+      top:64px;
+      left:0;
+      right:0;
+      background:var(--paper);
+      border-bottom:1px solid var(--line);
+      flex-direction:column;
+      gap:0;
+      display:none;
+      padding:8px 6vw 16px;
+    }
+    .nav-links.open{ display:flex; }
+    .nav-links a{
+      padding:12px 0;
+      border-bottom:1px solid var(--line);
+      width:100%;
+    }
+    .nav-toggle{ display:block; }
+
+    .hero{
+      grid-template-columns:1fr;
+      padding-top:56px;
+    }
+    .hero-side{
+      border-left:none;
+      border-top:1px solid var(--line);
+      padding-left:0;
+      padding-top:20px;
+    }
+
+    .about-grid,
+    .skills-grid,
+    .projects-head,
+    .resume-grid,
+    .contact-grid{
+      grid-template-columns:1fr;
+      gap:12px;
+    }
+    .skill-list{ grid-template-columns:1fr; }
+    .project-row{
+      grid-template-columns:1fr;
+      gap:6px;
+    }
+    section{ padding:56px 6vw; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-mark" href="#top">Will Grennan</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="top" class="hero">
+  <div>
+    <h1>Will Grennan</h1>
+    <p class="role">Business/Management Student — <span class="school">University of Utah</span></p>
+  </div>
+  <div class="hero-side">
+    <p>Building at the edge of business and technology, with a growing focus on applied AI.</p>
+    <p>Salt Lake City, UT</p>
+  </div>
+</section>
+
+<section id="about">
+  <div class="about-grid">
+    <div class="section-label">About</div>
+    <p>
+      I'm a Business/Management major at the University of Utah, still deciding my exact focus
+      but leaning toward administration, finance, or marketing. My career interests include
+      breaking into the marine construction industry, which my dad's side of the family has
+      worked in for generations, or working in marketing for an outdoor recreation company like
+      REI, Patagonia, or The North Face. I'm hoping to learn AI better so I can use it to
+      complete tasks that would normally take a long time, and I'm building my technical skills
+      in web development through projects like this portfolio.
+    </p>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="skills-grid">
+    <div class="section-label">Skills</div>
+    <ul class="skill-list">
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>AI Prompt Engineering</li>
+      <li>Problem Solving</li>
+      <li>Research Skills</li>
+      <li>Microsoft Excel</li>
+    </ul>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="projects-head">
+    <div class="section-label">Projects</div>
+    <p style="color:var(--slate); margin:0; max-width:56ch;">
+      A running record of coursework and self-directed projects. Updated throughout the semester.
+    </p>
+  </div>
+  <div class="project-list">
+    <div class="project-row">
+      <div class="project-num">01</div>
+      <div>
+        <div class="project-title">AI Business Analysis</div>
+        <div class="project-desc">Analyze business data using ChatGPT.</div>
+      </div>
+      <div class="project-status">In progress</div>
+    </div>
+    <div class="project-row">
+      <div class="project-num">02</div>
+      <div>
+        <div class="project-title">Data Visualization</div>
+        <div class="project-desc">Dashboard built with Tableau.</div>
+      </div>
+      <div class="project-status">Planned</div>
+    </div>
+    <div class="project-row">
+      <div class="project-num">03</div>
+      <div>
+        <div class="project-title">Web Development</div>
+        <div class="project-desc">Responsive Bootstrap website.</div>
+      </div>
+      <div class="project-status">Planned</div>
+    </div>
+    <div class="project-row">
+      <div class="project-num">04</div>
+      <div>
+        <div class="project-title">Process Improvement</div>
+        <div class="project-desc">AI-assisted business workflow redesign.</div>
+      </div>
+      <div class="project-status">Planned</div>
+    </div>
+  </div>
+</section>
+
+<section id="resume">
+  <div class="resume-grid">
+    <div class="section-label">Resume</div>
+    <div class="resume-box">
+      <div>
+        <strong>Resume coming soon.</strong>
+        <div style="color:var(--slate); font-size:0.92rem; margin-top:4px;">
+          Check back later in the semester for a downloadable PDF.
+        </div>
+      </div>
+      <!-- Once you have a PDF, replace the block above with the line below:
+      <a class="btn" href="resume.pdf" download>Download Resume (PDF)</a>
+      -->
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-grid">
+    <div class="section-label">Contact</div>
+    <ul class="contact-list">
+      <li>
+        <span>University Email</span>
+        <a href="mailto:youruniversityemail@umail.utah.edu">youruniversityemail@umail.utah.edu</a>
+      </li>
+      <li>
+        <span>LinkedIn</span>
+        <a href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noopener">linkedin.com/in/yourprofile</a>
+      </li>
+      <li>
+        <span>GitHub</span>
+        <a href="https://github.com/WillGrennan" target="_blank" rel="noopener">github.com/WillGrennan</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  &copy; <span id="year"></span> Will Grennan. Built with HTML &amp; CSS.
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    links.classList.toggle('open');
+  });
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => links.classList.remove('open'));
+  });
+</script>
+
+</body>
+</html>
